@@ -33,7 +33,6 @@ const Initial = (props) => {
           <ContainerButtonInitial>
             {props.buttonOpenModalLog}
             {props.buttonOpenModalCad}
-            
           </ContainerButtonInitial>
       </Container>
     </>
