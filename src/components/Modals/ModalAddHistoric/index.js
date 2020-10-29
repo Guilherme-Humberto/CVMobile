@@ -70,12 +70,7 @@ const ModalAddHistoric = ({ buttonCloseModal, id }) => {
 
           <View style={{ flexDirection: "row", alignItems: "center", marginHorizontal: 20 }}>
             <CheckBox style={{ borderRadius: 100 }} onValueChange={setPalheta} value={palheta}/>
-            <TypeText>Palheta</TypeText>
-          </View>
-
-          <View style={{ flexDirection: "row", alignItems: "center", marginHorizontal: 20 }}>
-            <CheckBox style={{ borderRadius: 100 }} onValueChange={setMedula} value={medula}/>
-            <TypeText>Medula</TypeText>
+            <TypeText>Plaqueta</TypeText>
           </View>
         </Selected>
 

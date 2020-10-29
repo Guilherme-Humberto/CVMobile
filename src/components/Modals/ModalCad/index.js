@@ -17,7 +17,7 @@ import {
 import Icon from 'react-native-vector-icons/AntDesign'
 import { AsyncStorage } from 'react-native';
 
-const ModalCad = ({ buttonCloseModal }) => {
+const ModalCad = ({ buttonCloseModal, navigation }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [age, setAge] = useState('')
@@ -37,7 +37,7 @@ const ModalCad = ({ buttonCloseModal }) => {
       .then(async (response) => {
         const { user } = response.data
         await AsyncStorage.setItem('infos', JSON.stringify(user))
-        { props.navigation.navigate("UserPage") }
+        navigation.navigate("UserPage")
       })
       .catch(err => console.log(err))
   }
