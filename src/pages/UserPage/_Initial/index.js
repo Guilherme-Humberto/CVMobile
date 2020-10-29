@@ -12,22 +12,15 @@ import {
   Content
 } from './styles'
 
-const UserPage = ({ navigation }) => {
-  // const { navigation } = route.params
+const UserPage = () => {
   const [infos, setInfos] = useState({})
 
-    async function getInfos () {
-      const user = await AsyncStorage.getItem('infos')
-
-      if (!user) {
-        navigation.navigate('Campaings');
+    useEffect(() => {
+      async function getInfos () {
+        setInfos(JSON.parse(await AsyncStorage.getItem('infos')))
       }
-      else {
-        setInfos(JSON.parse(user))
-      }
-    }
-    getInfos()
-
+      getInfos()
+    }, [])
 
   return (
     <>

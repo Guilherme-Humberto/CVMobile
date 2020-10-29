@@ -18,13 +18,16 @@ import {
 
 
 const Initial = ({ navigation, buttonOpenModalLog, buttonOpenModalCad }) => {
-  useEffect(() => {
-    AsyncStorage.getItem('infos').then(user => {
-      if (user) {
-        navigation.navigate('UserPage');
-      }
-    })
-  }, []);
+  // useEffect(() => {
+  //   AsyncStorage.getItem('infos').then(user => {
+  //     if (user) {
+  //       navigation.navigate('UserPage');
+  //     }
+  //     else {
+  //       navigation.navigate('Main');
+  //     }
+  //   })
+  // }, []);
   
   return (
     <>

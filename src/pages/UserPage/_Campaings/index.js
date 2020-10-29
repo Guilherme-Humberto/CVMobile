@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, AsyncStorage, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
-import Icon2 from 'react-native-vector-icons/Feather'
+import Icon2 from 'react-native-vector-icons/Fontisto'
 import Fetcher from '../../../hooks/Fetcher';
 import { 
     Container,
     ContainerIcons,
     TextIcon,
-    ImageGifTOp,
+    Image,
     TitleCampTop,
     DescCampTop,
     CardCampaings,
@@ -52,50 +52,28 @@ const _Campaigns = () => {
           <DescCampTop>
             Estamos esperando você de portas abertas. Conheça nossos projetos.
           </DescCampTop>
-          <CardCampaings>
-            <TitleCard>Exemplo</TitleCard>
-            <DescCard>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, cum?</DescCard>
-            <ContainerIcons>
-              <TextIcon><Icon style={{marginRight: 60}} color={"green"} name="phone" size={18}/> (11) 2328-2010</TextIcon>
-              <TextIcon><Icon2 style={{marginRight: 60}} color={"green"} name="smartphone" size={18}/> (11) 9382-5321</TextIcon>
-            </ContainerIcons>
-          </CardCampaings>
 
-          <CardCampaings>
-            <TitleCard>Exemplo</TitleCard>
-            <DescCard>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, cum?</DescCard>
-            <ContainerIcons>
-              <TextIcon><Icon style={{marginRight: 60}} color={"green"} name="phone" size={18}/> (11) 2328-2010</TextIcon>
-              <TextIcon><Icon2 style={{marginRight: 60}} color={"green"} name="smartphone" size={18}/> (11) 9382-5321</TextIcon>
-            </ContainerIcons>
-          </CardCampaings>
-
-          <CardCampaings>
-            <TitleCard>Exemplo</TitleCard>
-            <DescCard>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, cum?</DescCard>
-            <ContainerIcons>
-              <TextIcon><Icon style={{marginRight: 60}} color={"green"} name="phone" size={18}/> (11) 2328-2010</TextIcon>
-              <TextIcon><Icon2 style={{marginRight: 60}} color={"green"} name="smartphone" size={18}/> (11) 9382-5321</TextIcon>
-            </ContainerIcons>
-          </CardCampaings>
-
-          <CardCampaings>
-            <TitleCard>Exemplo</TitleCard>
-            <DescCard>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, cum?</DescCard>
-            <ContainerIcons>
-              <TextIcon><Icon style={{marginRight: 60}} color={"green"} name="phone" size={18}/> (11) 2328-2010</TextIcon>
-              <TextIcon><Icon2 style={{marginRight: 60}} color={"green"} name="smartphone" size={18}/> (11) 9382-5321</TextIcon>
-            </ContainerIcons>
-          </CardCampaings>
-
-          <CardCampaings>
-            <TitleCard>Exemplo</TitleCard>
-            <DescCard>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, cum?</DescCard>
-            <ContainerIcons>
-              <TextIcon><Icon style={{marginRight: 60}} color={"green"} name="phone" size={18}/> (11) 2328-2010</TextIcon>
-              <TextIcon><Icon2 style={{marginRight: 60}} color={"green"} name="smartphone" size={18}/> (11) 9382-5321</TextIcon>
-            </ContainerIcons>
-          </CardCampaings>
+          {data.map((item) => (
+            <CardCampaings key={item._id}>
+              <Image source={{ uri: item.img }}/>
+              <TitleCard>{item.name}</TitleCard>
+              <DescCard>{item.desc}</DescCard>
+              <ContainerIcons>
+                <TextIcon>
+                  <Icon2
+                    name="email" 
+                    size={18}
+                  /> {item.email}
+                </TextIcon>
+                <TextIcon>
+                  <Icon
+                    name="phone" 
+                    size={18}
+                  /> {item.phone}
+                </TextIcon>
+              </ContainerIcons>
+            </CardCampaings>
+          ))}
         </Container>
       </ScrollView>
       </>

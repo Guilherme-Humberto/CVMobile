@@ -9,9 +9,6 @@ export const Container = styled.View`
 
 export const ContainerIcons = styled.View`
   margin-top: 5%;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
 `;
 
 export const ImageGifTOp = styled.Image`
@@ -21,12 +18,12 @@ export const ImageGifTOp = styled.Image`
 `
 
 export const TextIcon = styled.Text`
-  font-size: 14px;
+  font-size: 16px;
   font-family: Alata;
 `
 
 export const TitleCampTop = styled.Text`
-  font-size: 30px;
+  font-size: 35px;
   font-family: Alata;
   color: #444;
   font-weight: bold;
@@ -34,7 +31,7 @@ export const TitleCampTop = styled.Text`
 `;
 
 export const DescCampTop = styled.Text`
-  font-size: 14px;
+  font-size: 16px;
   font-family: Alata;
   color: #444;
   font-weight: bold;
@@ -49,6 +46,13 @@ export const CardCampaings = styled.View`
   width: 100%;
   padding: 15px;
 `
+export const Image = styled.Image`
+  margin: 10px auto;
+  width: 300px;
+  height: 150px;
+  border-radius: 10px;
+`
+
 export const TitleCard = styled.Text`
   font-size: 23px;
   font-family: Alata;
