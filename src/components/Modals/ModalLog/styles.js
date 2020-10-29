@@ -8,13 +8,15 @@ export const Container = styled.View`
     width: 100%;
     height: 100%;
     background: #F8F4F4;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
 `;
 
-export const Containerform = styled.View`
+export const Containerform = styled.SafeAreaView`
   display: flex;
+  width: 80%;
   flex-direction: column;
-  margin: 0 10%;
-  margin-top: 50%;
 `;
 
 export const ImageModalLog = styled.Image`
@@ -42,12 +44,14 @@ export const DescModalLog = styled.Text`
 `;
 
 export const InputModalLog = styled.TextInput`
-    background: rgb(243, 206, 206);
+    background: transparent;
     margin: 5px 0;
     padding: 10px 15px;
     color: #000;
     font-size: 16px;
-    border-radius: 10px;
+    border-radius: 5px;
+    border: 2px solid #000;
+    width: 100%;
 `;
 
 export const ButtonForgot = styled.TouchableOpacity`
@@ -80,3 +84,6 @@ export const TextButtonAcess = styled.Text`
     color: #fff;
     font-size: 14px;
 `;
+
+export const ButtonNav = styled.TouchableOpacity``
+export const TextButton = styled.Text``

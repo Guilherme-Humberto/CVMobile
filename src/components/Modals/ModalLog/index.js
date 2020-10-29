@@ -10,7 +10,8 @@ import {
   TitleModalLog,
   DescModalLog,
   InputModalLog,
-  ImageModalLog,
+  ButtonNav,
+  TextButton,
   ModalTop,
   ButtonForgot,
   TextButtonForgot,
@@ -20,7 +21,7 @@ import {
 
 import Icon from 'react-native-vector-icons/AntDesign'
 
-const ModalLog= (props) => {
+const ModalLog= ({ navigation, buttonCloseModal }) => {
   const [modalForgot, setModalForgot] = useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -33,20 +34,34 @@ const ModalLog= (props) => {
     .then(async(response) => {
       const { user } = response.data
       await AsyncStorage.setItem('infos', JSON.stringify(user))
-      {props.navigation.navigate("UserPage")}
+      navigation.navigate("UserPage")
     })
     .catch(err => console.log(err))
   }
   return (
       <>
         <Container>
-            <ModalTop>{props.buttonCloseModal}</ModalTop>
+            <ModalTop>
+              <ButtonNav onPress={buttonCloseModal}>
+                <TextButton><Icon name="close" size={30} color="black" /></TextButton>
+              </ButtonNav>
+            </ModalTop>
             {modalForgot ? (
               <Containerform>
                 <TitleModalLog>Acessar</TitleModalLog>
                 <DescModalLog>Bem vindo de volta</DescModalLog>
-                <InputModalLog onChangeText={(value) => setEmail(value)} placeholder="E-mail" placeholderTextColor="#000"/>
-                <InputModalLog onChangeText={(value) => setPassword(value)} secureTextEntry={true} textContentType={'password'} placeholder="Senha" placeholderTextColor="#000"/>
+                <InputModalLog 
+                  onChangeText={(value) => setEmail(value)} 
+                  placeholder="E-mail" 
+                  placeholderTextColor="#000"
+                />
+                <InputModalLog 
+                  onChangeText={(value) => setPassword(value)} 
+                  secureTextEntry={true} 
+                  textContentType={'password'} 
+                  placeholder="Senha" 
+                  placeholderTextColor="#000"
+                />
                 <ButtonForgot onPress={handleModalForgot}>
                   <TextButtonForgot>Esqueci Minha Senha</TextButtonForgot>
                 </ButtonForgot>
@@ -59,9 +74,22 @@ const ModalLog= (props) => {
               <Containerform>
                 <TitleModalLog>Alterar Senha</TitleModalLog>
                 <DescModalLog>Esqueceu sua senha ? sem problemas, digite uma nova</DescModalLog>
-                <InputModalLog placeholder="Digite seu E-mail" placeholderTextColor="#000"/>
-                <InputModalLog secureTextEntry={true} textContentType={'password'} placeholder="Digite uma nova senha" placeholderTextColor="#000"/>
-                <InputModalLog secureTextEntry={true} textContentType={'password'} placeholder="Confirme sua nova senha" placeholderTextColor="#000"/>
+                <InputModalLog 
+                  placeholder="Digite seu E-mail" 
+                  placeholderTextColor="#000"
+                />
+                <InputModalLog 
+                  secureTextEntry={true} 
+                  textContentType={'password'} 
+                  placeholder="Digite uma nova senha" 
+                  placeholderTextColor="#000"
+                />
+                <InputModalLog 
+                  secureTextEntry={true} 
+                  textContentType={'password'} 
+                  placeholder="Confirme sua nova senha" 
+                  placeholderTextColor="#000"
+                />
                 <ButtonForgot onPress={handleModalLogin}>
                   <TextButtonForgot>Voltar para login</TextButtonForgot>
                 </ButtonForgot>
