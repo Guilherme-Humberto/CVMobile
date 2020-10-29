@@ -1,7 +1,8 @@
-import React from 'react';
-import { ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, AsyncStorage, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 import Icon2 from 'react-native-vector-icons/Feather'
+import Fetcher from '../../../hooks/Fetcher';
 import { 
     Container,
     ContainerIcons,
@@ -15,12 +16,42 @@ import {
 } from './styles';
 
 const _Campaigns = () => {
+  const [infos, setInfos] = useState({})
+
+  useEffect(() => {
+    async function getInfos() {
+      const user = await AsyncStorage.getItem("infos")
+      setInfos(JSON.parse(user))
+    }
+    getInfos()
+  }, [])
+
+  const { data } = Fetcher(`/campaign`)
+
+  if(!data) return (
+    <View 
+      style={{ 
+        flex: 1, 
+        justifyContent: "center", 
+        alignItems: "center" 
+      }}>
+      <Text 
+        style={{ 
+          fontFamily: "Alata", 
+          fontSize: 30, 
+          color: "#444" 
+      }}>Carregando...</Text>
+    </View>
+  )
+
   return (
       <>
       <ScrollView>
         <Container>
           <TitleCampTop>Campanhas</TitleCampTop>
-          <DescCampTop>A informação é o melhor remédio para curar o preconceito. Estamos esperando você de portas abertas. Conheça nossos projetos.</DescCampTop>
+          <DescCampTop>
+            Estamos esperando você de portas abertas. Conheça nossos projetos.
+          </DescCampTop>
           <CardCampaings>
             <TitleCard>Exemplo</TitleCard>
             <DescCard>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, cum?</DescCard>

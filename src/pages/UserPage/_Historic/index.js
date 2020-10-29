@@ -1,62 +1,72 @@
-import React, { useState } from 'react';
-import Icon from 'react-native-vector-icons/AntDesign'
+import React, { useState, useEffect } from 'react';
+import { ScrollView, AsyncStorage, Text, View } from 'react-native';
 
 import HistoricLists from '../../../components/Lists/HistoricLists'
+import ModalAddHistoric from '../../../components/Modals/ModalAddHistoric';
+import Fetcher from '../../../hooks/Fetcher';
 
 import { 
     Container,
-    styles,
     TitleHistoric,
     DescHistoric,
-    ContainerForm,
-    ContainerInputs,
-    ButtonDate,
-    TextButtonDate,
-    ButtonAdd,
-    TextButtonAdd
+    Header,
+    Button,
+    TextButton
 } from './styles';
 
 const _Historic = () => {
-  const [language, setLanguage] = useState({language: ''})
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
+  const [infos, setInfos] = useState({})
+  const [modalAdd, setModalAdd] = useState(false)
 
+  useEffect(() => {
+    async function getInfos() {
+      const user = await AsyncStorage.getItem("infos")
+      setInfos(JSON.parse(user))
+    }
+    getInfos()
+  }, [])
 
-  const Teste = () => alert(date)
+  const { data } = Fetcher(`/historic/list/${infos._id}`)
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-    console.log(date.toLocaleDateString())
-  };
-
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
-  const showDatepicker = () => showMode('date')
-
+  if(!data) return (
+    <View 
+      style={{ 
+        flex: 1, 
+        justifyContent: "center", 
+        alignItems: "center" 
+      }}>
+      <Text 
+        style={{ 
+          fontFamily: "Alata", 
+          fontSize: 30, 
+          color: "#444" 
+      }}>Carregando...</Text>
+    </View>
+  )
+    console.log(data)
   return (
       <>
         <Container>
-            <TitleHistoric>Histórico de doações</TitleHistoric>
-            <DescHistoric>Aqui você pode visualizar o seu histórico de doações. Basta preencher corretamente os campos abaixo.</DescHistoric>
-            <ContainerForm>
-            <ButtonDate onPress={showDatepicker}>
-              <Icon name="calendar" size={18}/>
-              <TextButtonDate>Selecione a data</TextButtonDate>
-            </ButtonDate>
-              <ContainerInputs>
-                  <ButtonAdd onPress={Teste}>
-                <TextButtonAdd>Adicionar</TextButtonAdd>
-              </ButtonAdd>
-              </ContainerInputs>
-              
-            </ContainerForm>
-          <HistoricLists />
+            <Header>
+              <TitleHistoric>Histórico de doações</TitleHistoric>
+              <DescHistoric>
+                Aqui você pode visualizar o seu histórico de doações. 
+                Basta preencher corretamente os campos abaixo.
+              </DescHistoric>
+              <Button onPress={() => setModalAdd(true)}>
+                <TextButton>Adicionar</TextButton>
+              </Button>
+            </Header>
+            
+            {data.map((item) => <HistoricLists key={item._id} infos={item}/>)}
         </Container>
+
+        {modalAdd && (
+          <ModalAddHistoric 
+            id={infos._id}
+            buttonCloseModal={() => setModalAdd(false)}
+          />
+        )}
       </>
   );
 }

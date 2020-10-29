@@ -13,13 +13,15 @@ import Infos from './_UserInfos/index'
 const Tab = createBottomTabNavigator();
 
 
-const UserPage = () => {
+const UserPage = ({ navigation }) => {
+
+    
 // Configurando tema para a página de navegação
   const MyTheme = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: '#fff',
+      background: '#eee',
     },
   };
     return (
@@ -61,7 +63,7 @@ const UserPage = () => {
                     {/* Montando as Tabs */}
                     <Tab.Screen name="Locals" component={Locals} />
                     <Tab.Screen name="Historic" component={Historic} />
-                    <Tab.Screen name="Home" component={Initial} />
+                    <Tab.Screen name="Home" options={({ navigation }) => ({ teste: () => navigation.navigate("Main") })} component={Initial} />
                     <Tab.Screen name="Campaings" component={Campaings} />
                     <Tab.Screen name="Infos" component={Infos} />
                 </Tab.Navigator>

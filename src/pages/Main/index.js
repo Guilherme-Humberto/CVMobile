@@ -17,56 +17,48 @@ import {
 import Footer from '../../components/Footer/index'
 import ModalLog from '../../components/Modals/ModalLog'
 import ModalCad from '../../components/Modals/ModalCad'
+import ModalInst from '../../components/Modals/ModalInst'
 import Icon from 'react-native-vector-icons/AntDesign'
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons'
+
 
 const Main = ({ navigation }) => {
-  const [openModal, setopenModal] = useState(false)
+  const [openModalLog, setopenModalLog] = useState(false)
   const [openModalCad, setopenModalCad] = useState(false)
+  const [openModalInst, setopenModalInst] = useState(false)
   
   return (
       <>
         <ScrollView>
           <Initial 
-          buttonOpenModalLog={
-            <ButtonLog onPress={() => setopenModal(true)}>
-              <TextButtonLog>Acessar</TextButtonLog>
-            </ButtonLog>
-          }
-          buttonOpenModalCad={
-            <ButtonCad onPress={() => setopenModalCad(true)}>
-              <TextButtonCad>
-                Cadastrar
-              </TextButtonCad>
-              <Icon2 name="account-arrow-right" size={25} color="white" />
-            </ButtonCad>
-          }
+            navigation={navigation}
+            buttonOpenModalLog={() => setopenModalLog(true)}
+            buttonOpenModalCad={() => setopenModalCad(true)}
           />
           <Campaings />
-          <Institutions/>
+          <Institutions openModal={() => setopenModalInst(true)}/>
           <About />
           <Footer />
         </ScrollView>
 
-        {openModal && 
+        {openModalLog && 
           <ModalLog
             navigation={navigation}
-            buttonCloseModal={
-              <ButtonNav onPress={() => setopenModal(false)}>
-                <TextButton><Icon name="close" size={30} color="black" /></TextButton>
-              </ButtonNav>}
-            /> 
+            buttonCloseModal={() => setopenModalLog(false)}
+          /> 
         }
 
         {openModalCad &&
           <ModalCad
             navigation={navigation}
-            buttonCloseModal={
-              <ButtonNav onPress={() => setopenModalCad(false)}>
-                <TextButton><Icon name="close" size={30} color="black" /></TextButton>
-              </ButtonNav>}
+            buttonCloseModal={() => setopenModalCad(false)}
           />
         }
+
+        {openModalInst && (
+          <ModalInst 
+            closeModal={() => setopenModalInst(false)}
+          />
+        )}
       </>
   );
 }

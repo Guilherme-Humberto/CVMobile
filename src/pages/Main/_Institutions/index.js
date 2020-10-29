@@ -11,7 +11,7 @@ import {
 
  import imgInst from '../../../../assets/imgs/imgInst.png'
 
-function Institutions () {
+function Institutions ({ openModal }) {
   return (
       <>
         <Container>
@@ -22,7 +22,7 @@ function Institutions () {
               mais áreas.
             </DescInst>
             <ImageInst source={imgInst} alt="imagem instituições"/>
-            <ButtonInst>
+            <ButtonInst onPress={openModal}>
               <TextButtonInst>
                 Conheça nossos parceiros
               </TextButtonInst>

@@ -21,8 +21,8 @@ export const DescInst = styled.Text`
 `;
 
 export const ImageInst = styled.Image`
-  width: 280px;
-  height: 150px;
+  width: 330px;
+  height: 180px;
 `;
 
 export const ButtonInst = styled.TouchableOpacity`

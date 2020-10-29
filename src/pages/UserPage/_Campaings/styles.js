@@ -23,12 +23,12 @@ export const ImageGifTOp = styled.Image`
 export const TextIcon = styled.Text`
   font-size: 14px;
   font-family: Alata;
-  color: green;
 `
 
 export const TitleCampTop = styled.Text`
-  font-size: 25px;
+  font-size: 30px;
   font-family: Alata;
+  color: #444;
   font-weight: bold;
   padding: 10px;
 `;
@@ -36,6 +36,7 @@ export const TitleCampTop = styled.Text`
 export const DescCampTop = styled.Text`
   font-size: 14px;
   font-family: Alata;
+  color: #444;
   font-weight: bold;
   margin-bottom: 5%;
   padding: 10px;
@@ -43,12 +44,10 @@ export const DescCampTop = styled.Text`
 
 export const CardCampaings = styled.View`
   margin-bottom: 5%;
-  background: rgb(243, 241, 241);
+  background: #dee2e6;
   justify-content: center;
   width: 100%;
   padding: 15px;
-  border-radius: 5px;
-  elevation: 10;
 `
 export const TitleCard = styled.Text`
   font-size: 23px;

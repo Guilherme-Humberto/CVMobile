@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   container: {
-    width: 180,
+    alignItems: "center",
+    width: 280,
     backgroundColor: "#EBEBEB",
-    borderRadius: 10,
     marginTop: 30,
     marginBottom: 30,
     marginHorizontal: 13,
@@ -20,23 +20,24 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "Roboto",
-    fontSize: 14,
+    fontWeight: "bold",
+    fontSize: 25,
+    color: "#444",
     textAlign: "left",
     marginTop: 20
   },
   desc: {
     fontFamily: "Alata",
-    fontSize: 11,
+    fontSize: 14,
     textAlign: "left",
     marginTop: 10,
     marginBottom: 10
   },
   img: {
-    height: 150,
-    width: 150,
-    borderRadius: 50,
+    height: 180,
+    width: 180,
+    borderRadius: 10,
     opacity: 0.8,
-    marginHorizontal: 5
   }
 })
 

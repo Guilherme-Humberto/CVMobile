@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Fetcher from '../../../hooks/Fetcher'
 import { 
   styles,
   Container,
@@ -9,42 +9,24 @@ import {
 
  import { FlatList, View, Image, Text, StyleSheet } from 'react-native'
 
- const teste = [
-   {
-     id: 1,
-     img:
-       "https://images.pexels.com/photos/3791664/pexels-photo-3791664.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-     title: "Nome da campanha1",
-     desc: "Lorem Ipsum é simplesmente uma simulação de texto da ",
-   },
-   {
-     id: 2,
-     img:
-       "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-     title: "Nome da campanha2",
-     desc:
-       "Lorem Ipsum é simplesmente uma simulação de texto da ",
-   },
-   {
-     id: 3,
-     img:
-       "https://images.pexels.com/photos/3823489/pexels-photo-3823489.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-     title: "Nome da campanha3",
-     desc:
-       "Lorem Ipsum é simplesmente uma simulação de texto da ",
-   },
-   {
-     id: 4,
-     img:
-       "https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-     title: "Nome da campanha3",
-     desc:
-       "Lorem Ipsum é simplesmente uma simulação de texto da ",
-   },
- ];
-
-
 function _Campaigns() {
+  const { data } = Fetcher("/campaign?limit=4")
+
+  if(!data) return (
+    <View 
+      style={{ 
+        flex: 1, 
+        justifyContent: "center", 
+        alignItems: "center" 
+      }}>
+      <Text 
+        style={{ 
+          fontFamily: "Alata", 
+          fontSize: 30, 
+          color: "#444" 
+      }}>Carregando...</Text>
+    </View>
+  )
 
   function ListRender (props) {
     return(
@@ -69,12 +51,12 @@ function _Campaigns() {
             <FlatList 
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              data={teste}
-              keyExtractor={ (item, index) => index.toString() }
+              data={data}
+              keyExtractor={(item) => item._id.toString()}
               renderItem={({ item }) => (
                 <ListRender 
                   img={item.img}
-                  title={item.title}
+                  title={item.name}
                   desc={item.desc}
                 />
               )}
