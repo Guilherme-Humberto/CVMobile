@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   },
   img: {
     height: 180,
-    width: 180,
+    width: 250,
     borderRadius: 10,
     opacity: 0.8,
   }

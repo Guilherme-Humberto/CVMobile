@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { AsyncStorage } from 'react-native'
+import React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign'
@@ -14,15 +13,7 @@ import Infos from './_UserInfos/index'
 const Tab = createBottomTabNavigator();
 
 
-const UserPage = ({ navigation }) => {
-    useEffect(() => {
-        async function verifyData() {
-            if(!await AsyncStorage.getItem("infos")) {
-                navigation.navigate("Main")
-            }
-        }
-        verifyData()
-    }, [])
+const UserPage = () => {
 // Configurando tema para a página de navegação
   const MyTheme = {
     ...DefaultTheme,
@@ -70,7 +61,7 @@ const UserPage = ({ navigation }) => {
                     {/* Montando as Tabs */}
                     <Tab.Screen name="Locals" component={Locals} />
                     <Tab.Screen name="Historic" component={Historic} />
-                    <Tab.Screen name="Home" options={({ navigation }) => ({ teste: () => navigation.navigate("Main") })} component={Initial} />
+                    <Tab.Screen name="Home" component={Initial} />
                     <Tab.Screen name="Campaings" component={Campaings} />
                     <Tab.Screen name="Infos" component={Infos} />
                 </Tab.Navigator>

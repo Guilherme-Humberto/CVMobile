@@ -13,6 +13,10 @@ export const TitleInfos = styled.Text`
   font-weight: bold;
 `;
 
+export const Space = styled.View`
+  margin: 10px 0;
+`
+
 export const TextInfo = styled.Text`
   font-size: 16px;
   font-family: Alata;

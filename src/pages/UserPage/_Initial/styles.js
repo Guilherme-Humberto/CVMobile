@@ -49,7 +49,7 @@ export const Header = styled.View`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #ff686b;
+  background-color: #E26868;
 
 `;
 

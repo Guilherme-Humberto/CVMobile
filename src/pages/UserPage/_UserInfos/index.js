@@ -16,7 +16,8 @@ import {
   Form,
   Adress,
   ButtonPerfil,
-  TextButtonPerfil
+  TextButtonPerfil,
+  Space
 } from './styles';
 
 const UserInfos = () => {
@@ -85,25 +86,16 @@ const UserInfos = () => {
               <Form>
                 <Label>E-Mail</Label>
                 <InputInfo value={infos.email}/>
-                <View
-                  style={{
-                    marginVertical: 10
-                  }}
-                />
+                <Space />
+
                 <Label>Endereço</Label>
                 <InputInfo value={infos.adress}/>
-                <View
-                  style={{
-                    marginVertical: 10
-                  }}
-                />
+                <Space />
+
                 <Label>Celular</Label>
                 <InputInfo value={infos.cell}/>
-                <View
-                  style={{
-                    marginVertical: 10
-                  }}
-                />
+                <Space/>
+                
                 <Label>Tipo Sanguíneo</Label>
                 <InputInfo value={infos.bloodtype}/>
               </Form>

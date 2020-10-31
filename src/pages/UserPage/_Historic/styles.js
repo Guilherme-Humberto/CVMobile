@@ -45,3 +45,36 @@ export const TextButton = styled.Text`
   font-weight: bold;
   color: #fff;
 `
+export const ContainerHeader = styled.SafeAreaView`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`
+
+export const TitleHeader = styled.Text`
+  font-size: 25px;
+  font-family: Alata;
+  font-weight: bold;
+`
+
+export const TextHeader = styled.Text`
+  font-size: 18px;
+  font-family: Alata;
+  text-align: center;
+  margin: 0 10px;
+`
+
+export const ButtonAddDonation = styled.TouchableOpacity`
+  width: 150px;
+  padding: 5px 10px;
+  background: #E26868;
+  border-radius: 5px;
+  align-items: center;
+  margin: 20px 0;
+`
+
+export const TextButtonDonation = styled.Text`
+  font-size: 18px;
+  font-family: Alata;
+  color: #fff
+`

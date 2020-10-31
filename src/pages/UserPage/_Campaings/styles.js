@@ -45,10 +45,12 @@ export const CardCampaings = styled.View`
   justify-content: center;
   width: 100%;
   padding: 15px;
+  elevation: 10;
+  margin: 20px 0;
 `
 export const Image = styled.Image`
   margin: 10px auto;
-  width: 300px;
+  width: 320px;
   height: 150px;
   border-radius: 10px;
 `
