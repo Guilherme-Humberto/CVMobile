@@ -23,16 +23,18 @@ export const Form = styled.SafeAreaView`
 `
 export const Selected = styled.View`
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
     margin: 15px;
 `
+export const Element = styled.View`
+    flex-direction: row;
+    align-items: center;
+`
 
-export const Input = styled.TextInput`
+export const Teste = styled.View`
     background: #ddd;
     width: 90%;
     border: transparent;
-    padding:10px;
     align-self: center;
 `
 
@@ -62,8 +64,9 @@ export const Label = styled.Text`
 export const TypeText = styled.Text`
     font-size: 17px;
     font-family: Alata;
+    margin-left: 20px;
 `
-export const Button = styled.TouchableOpacity`
+export const ButtonAddHist = styled.TouchableOpacity`
     width: 130px;
     background: #343a40;
     padding: 6px 10px;
@@ -76,4 +79,17 @@ export const TextButton = styled.Text`
     font-family: Alata;
     color: #fff;
     
+`
+
+export const ButtonOpenCalendar = styled.TouchableOpacity`
+    background: transparent;
+    align-items: center;
+    flex-direction: row;
+`
+
+export const TextButtonCalendar = styled.Text`
+    font-size: 24px;
+    font-family: Alata;
+    color: #000;
+    padding: 0 5px;
 `
