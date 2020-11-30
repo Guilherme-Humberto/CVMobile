@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, ActivityIndicator, Dimensions, Text, View, Alert } from 'react-native'
-import { Container, TitleMain } from './styles';
+import { Container } from './styles';
 import Fetcher from '../../../hooks/Fetcher'
 import Modal from '../../../components/Modals/ModalMap/index'
+import LoadMessage from '../../../components/LoadMessage';
 
 // Posição inicial do usuário
 // latitudeDelta e longitudeDelta: referentes ao zoom
@@ -14,7 +15,7 @@ const initialPosition = {
   longitudeDelta: 0.5091
 }
 
-const Locals = ({ navigation }) => {
+const Locals = () => {
   const { data } = Fetcher("institutions")
   // Pegando a largura e a altura da tela
   const { width, height } = Dimensions.get('window')
@@ -58,7 +59,7 @@ const Locals = ({ navigation }) => {
             `${item.name}`,
             `${item.desc}`,
             [
-              { text: "Agendar", onPress: () => schedule(item._id) },
+              { text: "Saber Mais", onPress: () => schedule(item._id) },
               { text: 'Fechar', style: 'cancel' },
             ],
             {
@@ -71,21 +72,9 @@ const Locals = ({ navigation }) => {
   }
 
   if (!data) return (
-    <View 
-      style={{ 
-        flex: 1, 
-        justifyContent: "center", 
-        alignItems: "center" 
-      }}>
-      <Text 
-        style={{ 
-          fontFamily: "Alata", 
-          fontSize: 30, 
-          color: "#444" 
-      }}>Carregando...</Text>
-    </View>
+    <LoadMessage />
   )
-
+    
   return (
     <>
       <Container>

@@ -17,16 +17,19 @@ import {
  import imgHome from '../../../../assets/imgs/imgHome.jpg'
 
 
-const Initial = ({ navigation, buttonOpenModalLog, buttonOpenModalCad }) => {
+const Initial = ({ navigation, ...rest }) => {
   useEffect(() => {
-    AsyncStorage.getItem('infos').then(user => {
-      if (user) {
-        navigation.navigate('UserPage');
-      }
-      else {
-        navigation.navigate('Main');
-      }
-    })
+    async function verifyAcess() {
+      await AsyncStorage.getItem('infos').then(user => {
+        if (user) {
+          navigation.navigate('UserPage');
+        }
+        else {
+          navigation.navigate('Main');
+        }
+      })
+    } 
+    verifyAcess()
   }, []);
   
   return (
@@ -48,11 +51,11 @@ const Initial = ({ navigation, buttonOpenModalLog, buttonOpenModalCad }) => {
           </DescMain>
           <ImageMain source={imgHome}/>
           <ContainerButtonInitial>
-            <ButtonLog onPress={buttonOpenModalLog}>
+            <ButtonLog onPress={rest.buttonOpenModalLog}>
               <TextButtonLog>Acessar</TextButtonLog>
             </ButtonLog>
 
-            <ButtonCad onPress={buttonOpenModalCad}>
+            <ButtonCad onPress={rest.buttonOpenModalCad}>
               <TextButtonCad>Cadastrar</TextButtonCad>
               <Icon2 name="account-arrow-right" size={25} color="white" />
             </ButtonCad>

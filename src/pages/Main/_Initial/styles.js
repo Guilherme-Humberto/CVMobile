@@ -7,7 +7,7 @@ export const Container = styled.View`
 `;
 
 export const TitleMain = styled.Text`
-  font-size: 30px;
+  font-size: 35px;
   font-family: Alata;
   font-weight: bold;
   margin-bottom: 10px;

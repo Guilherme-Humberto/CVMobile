@@ -1,51 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView, AsyncStorage, Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign'
-import Icon2 from 'react-native-vector-icons/Fontisto'
-import Fetcher from '../../../hooks/Fetcher';
-import { 
-    Container,
-    ContainerIcons,
-    TextIcon,
-    Image,
-    TitleCampTop,
-    DescCampTop,
-    CardCampaings,
-    TitleCard,
-    DescCard
-} from './styles';
+import React from "react";
+import { ScrollView } from "react-native";
+import Icon from "react-native-vector-icons/AntDesign";
+import Icon2 from "react-native-vector-icons/Fontisto";
+import Fetcher from "../../../hooks/Fetcher";
+import LoadMessage from "../../../components/LoadMessage";
+
+import {
+  Container,
+  ContainerIcons,
+  TextIcon,
+  Image,
+  TitleCampTop,
+  DescCampTop,
+  CardCampaings,
+  TitleCard,
+  DescCard,
+} from "./styles";
 
 const _Campaigns = () => {
-  const [infos, setInfos] = useState({})
+  const { data } = Fetcher(`/campaign`);
 
-  useEffect(() => {
-    async function getInfos() {
-      const user = await AsyncStorage.getItem("infos")
-      setInfos(JSON.parse(user))
-    }
-    getInfos()
-  }, [])
-
-  const { data } = Fetcher(`/campaign`)
-
-  if(!data) return (
-    <View 
-      style={{ 
-        flex: 1, 
-        justifyContent: "center", 
-        alignItems: "center" 
-      }}>
-      <Text 
-        style={{ 
-          fontFamily: "Alata", 
-          fontSize: 30, 
-          color: "#444" 
-      }}>Carregando...</Text>
-    </View>
-  )
+  if (!data) return <LoadMessage />;
 
   return (
-      <>
+    <>
       <ScrollView>
         <Container>
           <TitleCampTop>Campanhas</TitleCampTop>
@@ -55,29 +33,23 @@ const _Campaigns = () => {
 
           {data.map((item) => (
             <CardCampaings key={item._id}>
-              <Image source={{ uri: item.img }}/>
+              <Image source={{ uri: item.img }} />
               <TitleCard>{item.name}</TitleCard>
               <DescCard>{item.desc}</DescCard>
               <ContainerIcons>
                 <TextIcon>
-                  <Icon2
-                    name="email" 
-                    size={18}
-                  /> {item.email}
+                  <Icon2 name="email" size={18} /> {item.email}
                 </TextIcon>
                 <TextIcon>
-                  <Icon
-                    name="phone" 
-                    size={18}
-                  /> {item.phone}
+                  <Icon name="phone" size={18} /> {item.phone}
                 </TextIcon>
               </ContainerIcons>
             </CardCampaings>
           ))}
         </Container>
       </ScrollView>
-      </>
+    </>
   );
-}
+};
 
 export default _Campaigns;

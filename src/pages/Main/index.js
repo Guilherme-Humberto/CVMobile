@@ -5,20 +5,10 @@ import Institutions from './_Institutions';
 import About from './_About';
 import { ScrollView } from 'react-native'
 
-import {
-  ButtonLog,
-  ButtonCad,
-  ButtonNav,
-  TextButton,
-  TextButtonLog,
-  TextButtonCad
- } from './styles'
-
 import Footer from '../../components/Footer/index'
 import ModalLog from '../../components/Modals/ModalLog'
 import ModalCad from '../../components/Modals/ModalCad'
 import ModalInst from '../../components/Modals/ModalInst'
-import Icon from 'react-native-vector-icons/AntDesign'
 
 
 const Main = ({ navigation }) => {
