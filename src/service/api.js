@@ -1,7 +1,7 @@
 import { create } from 'apisauce'
 
 const api = create({
-    baseURL: "http://192.168.0.16:5001"
+    baseURL: "https://conectantovidas.herokuapp.com/"
 })
 
 export default api
