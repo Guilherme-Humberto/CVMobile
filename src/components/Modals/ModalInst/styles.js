@@ -13,7 +13,7 @@ export const ButtonCloseModal = styled.TouchableOpacity`
   background: transparent;
   border: none;
   position: absolute;
-  top: 3%;
+  top: 1%;
   left: 5%;
 `
 

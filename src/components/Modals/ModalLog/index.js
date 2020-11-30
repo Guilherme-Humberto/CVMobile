@@ -1,8 +1,8 @@
 // Modal de navbar
 
-import React, { useState } from 'react';
-import { AsyncStorage } from 'react-native'
-import api from '../../../service/api'
+import React, { useState } from "react";
+import { AsyncStorage, Text } from "react-native";
+import api from "../../../service/api";
 
 import {
   Container,
@@ -11,96 +11,132 @@ import {
   DescModalLog,
   InputModalLog,
   ButtonNav,
-  TextButton,
-  ModalTop,
   ButtonForgot,
   TextButtonForgot,
   ButtonAcess,
   TextButtonAcess,
-   } from './styles';
+  MessageError
+} from "./styles";
 
-import Icon from 'react-native-vector-icons/AntDesign'
+import Icon from "react-native-vector-icons/AntDesign";
 
-const ModalLog= ({ navigation, buttonCloseModal }) => {
-  const [modalForgot, setModalForgot] = useState(true)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+const ModalLog = ({ navigation, buttonCloseModal }) => {
+  const [modalForgot, setModalForgot] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confimPassword, setForgotPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [invalidPassword, setInvalidPassword] = useState("");
 
-  const handleModalForgot = () => setModalForgot(false)
-  const handleModalLogin = () => setModalForgot(true)
+  const handleModalForgot = () => setModalForgot(false);
+  const handleModalLogin = () => setModalForgot(true);
 
   const handleSubmit = async () => {
-    await api.post("/login", { email, password })
-    .then(async(response) => {
-      const { user } = response.data
-      await AsyncStorage.setItem('infos', JSON.stringify(user))
-      navigation.navigate("UserPage")
-    })
-    .catch(err => console.log(err))
+    try {
+      api
+        .post("/login", { email, password })
+        .then(async (response) => {
+          const { user } = response.data;
+          if (!user) setErrorMessage("Usuário não encontrado");
+
+          await AsyncStorage.setItem("infos", JSON.stringify(user));
+          navigation.navigate("UserPage");
+        })
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  async function handleForgotPassword() {
+    try {
+      if (password !== confimPassword) {
+        setInvalidPassword("As senhas não correspondem")
+      } else {
+        await api.patch("/forgot", { email, password })
+          .then((res) => {
+            setModalForgot(true)
+            console.log(res)
+          })
+          .catch(err => console.log(err))
+      }
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
   return (
-      <>
-        <Container>
-            <ModalTop>
-              <ButtonNav onPress={buttonCloseModal}>
-                <TextButton><Icon name="close" size={30} color="black" /></TextButton>
-              </ButtonNav>
-            </ModalTop>
-            {modalForgot ? (
-              <Containerform>
-                <TitleModalLog>Acessar</TitleModalLog>
-                <DescModalLog>Bem vindo de volta</DescModalLog>
-                <InputModalLog 
-                  onChangeText={(value) => setEmail(value)} 
-                  placeholder="E-mail" 
-                  placeholderTextColor="#000"
-                />
-                <InputModalLog 
-                  onChangeText={(value) => setPassword(value)} 
-                  secureTextEntry={true} 
-                  textContentType={'password'} 
-                  placeholder="Senha" 
-                  placeholderTextColor="#000"
-                />
-                <ButtonForgot onPress={handleModalForgot}>
-                  <TextButtonForgot>Esqueci Minha Senha</TextButtonForgot>
-                </ButtonForgot>
-                <ButtonAcess onPress={handleSubmit}>
-                  <TextButtonAcess>Acessar</TextButtonAcess>
-                  <Icon name="user" size={20} color="white"/>
-                </ButtonAcess>
-              </Containerform>
-            ): (
-              <Containerform>
-                <TitleModalLog>Alterar Senha</TitleModalLog>
-                <DescModalLog>Esqueceu sua senha ? sem problemas, digite uma nova</DescModalLog>
-                <InputModalLog 
-                  placeholder="Digite seu E-mail" 
-                  placeholderTextColor="#000"
-                />
-                <InputModalLog 
-                  secureTextEntry={true} 
-                  textContentType={'password'} 
-                  placeholder="Digite uma nova senha" 
-                  placeholderTextColor="#000"
-                />
-                <InputModalLog 
-                  secureTextEntry={true} 
-                  textContentType={'password'} 
-                  placeholder="Confirme sua nova senha" 
-                  placeholderTextColor="#000"
-                />
-                <ButtonForgot onPress={handleModalLogin}>
-                  <TextButtonForgot>Voltar para login</TextButtonForgot>
-                </ButtonForgot>
-                <ButtonAcess>
-                  <TextButtonAcess>Acessar</TextButtonAcess>
-                </ButtonAcess>
-              </Containerform>
-            )}
-        </Container>
-      </>
+    <>
+      <Container>
+        <ButtonNav onPress={buttonCloseModal}>
+          <Icon name="close" size={35} color="black" />
+        </ButtonNav>
+
+        {modalForgot ? (
+          <Containerform>
+            <TitleModalLog>Acessar</TitleModalLog>
+            <DescModalLog>Bem vindo de volta</DescModalLog>
+            {errorMessage ? <MessageError>{errorMessage}</MessageError> : null}
+            <InputModalLog
+              onChangeText={(value) => setEmail(value)}
+              placeholder="E-mail"
+              placeholderTextColor="#000"
+            />
+            <InputModalLog
+              onChangeText={(value) => setPassword(value)}
+              secureTextEntry={true}
+              textContentType={"password"}
+              placeholder="Senha"
+              placeholderTextColor="#000"
+            />
+            <ButtonForgot onPress={handleModalForgot}>
+              <TextButtonForgot>Esqueci Minha Senha</TextButtonForgot>
+            </ButtonForgot>
+            <ButtonAcess onPress={handleSubmit}>
+              <TextButtonAcess>Acessar</TextButtonAcess>
+              <Icon name="user" size={20} color="white" />
+            </ButtonAcess>
+          </Containerform>
+        ) : (
+          <Containerform>
+            <TitleModalLog>Alterar Senha</TitleModalLog>
+            <DescModalLog>
+              Esqueceu sua senha ? sem problemas, digite uma nova
+            </DescModalLog>
+            {invalidPassword ? <MessageError>{invalidPassword}</MessageError>: null}
+            <InputModalLog
+              placeholder="Digite seu E-mail"
+              onChangeText={(value) => setEmail(value)}
+              placeholderTextColor="#000"
+              value={email}
+            />
+            <InputModalLog
+              secureTextEntry={true}
+              textContentType={"password"}
+              onChangeText={(value) => setPassword(value)}
+              placeholder="Digite uma nova senha"
+              value={password}
+              placeholderTextColor="#000"
+            />
+            <InputModalLog
+              secureTextEntry={true}
+              onChangeText={(value) => setForgotPassword(value)}
+              textContentType={"password"}
+              value={confimPassword}
+              placeholder="Confirme sua nova senha"
+              placeholderTextColor="#000"
+            />
+            <ButtonForgot onPress={handleModalLogin}>
+              <TextButtonForgot>Voltar para login</TextButtonForgot>
+            </ButtonForgot>
+            <ButtonAcess onPress={handleForgotPassword}>
+              <TextButtonAcess>Alterar Senha</TextButtonAcess>
+            </ButtonAcess>
+          </Containerform>
+        )}
+      </Container>
+    </>
   );
-}
+};
 
 export default ModalLog;

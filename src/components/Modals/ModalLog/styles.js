@@ -24,12 +24,6 @@ export const ImageModalLog = styled.Image`
     height: 300px;
 `;
 
-export const ModalTop = styled.View`
-    position: absolute;
-    top: 50px;
-    left: 20px;
-`;
-
 export const TitleModalLog = styled.Text`
     font-size: 35px;
     font-family: Alata;
@@ -85,5 +79,14 @@ export const TextButtonAcess = styled.Text`
     font-size: 14px;
 `;
 
-export const ButtonNav = styled.TouchableOpacity``
-export const TextButton = styled.Text``
+export const ButtonNav = styled.TouchableOpacity`
+    top: 8%;
+    left: 5%;
+    padding: 10px;
+    position: absolute;
+`
+export const MessageError = styled.Text`
+    color: red;
+    font-weight: bold;
+    font-family: Alata;
+`

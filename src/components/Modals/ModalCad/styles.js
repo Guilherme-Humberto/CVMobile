@@ -19,12 +19,6 @@ export const Containerform = styled.SafeAreaView`
   width: 400px;
 `;
 
-export const ModalTop = styled.View`
-    position: absolute;
-    top: 50px;
-    left: 20px;
-`;
-
 export const TitleModalCad = styled.Text`
     font-size: 35px;
     font-family: Alata;
@@ -73,5 +67,15 @@ export const InputsPassword = styled.View`
     width: 100%;
 `
 
-export const ButtonNav = styled.TouchableOpacity``
-export const TextButton = styled.Text``
+export const ButtonNav = styled.TouchableOpacity`
+    top: 8%;
+    left: 5%;
+    padding: 10px;
+    position: absolute;
+`
+
+export const MessageError = styled.Text`
+    color: red;
+    font-weight: bold;
+    font-family: Alata;
+`

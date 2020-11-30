@@ -31,7 +31,7 @@ export const Element = styled.View`
     align-items: center;
 `
 
-export const Teste = styled.View`
+export const ContainerPicker = styled.View`
     background: #ddd;
     width: 90%;
     border: transparent;
@@ -78,18 +78,11 @@ export const TextButton = styled.Text`
     font-size: 17px;
     font-family: Alata;
     color: #fff;
-    
 `
-
-export const ButtonOpenCalendar = styled.TouchableOpacity`
-    background: transparent;
-    align-items: center;
-    flex-direction: row;
-`
-
-export const TextButtonCalendar = styled.Text`
-    font-size: 24px;
+export const MessageError = styled.Text`
+    color: red;
+    margin: 5px 20px;
+    font-size: 17px;
+    font-weight: bold;
     font-family: Alata;
-    color: #000;
-    padding: 0 5px;
 `
