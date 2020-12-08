@@ -13,8 +13,7 @@ export const ContainerIcons = styled.View`
 
 export const ImageGifTOp = styled.Image`
   height: 300px;
-  width: 300px;
-  margin: 0 auto;
+  width: 100px;
 `
 
 export const TextIcon = styled.Text`
@@ -50,7 +49,7 @@ export const CardCampaings = styled.View`
 `
 export const Image = styled.Image`
   margin: 10px auto;
-  width: 320px;
+  width: 100%;
   height: 150px;
   border-radius: 10px;
 `

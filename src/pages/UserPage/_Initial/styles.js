@@ -16,6 +16,7 @@ export const DescUserPage = styled.Text`
   font-size: 17px;
   font-family: Alata;
   text-align: center;
+  max-width: 400px;
   color: #fff;
 `;
 
@@ -54,6 +55,8 @@ export const Header = styled.View`
 `;
 
 export const Content = styled.View`
-  padding: 10% 5%;
+  padding: 10% 0;
+  margin: 0 30px;
+  max-width: 400px;
 `;
 
