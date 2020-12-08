@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 import Fetcher from '../../../hooks/Fetcher';
+import LoadMessage from '../../LoadMessage';
 import { 
   Container,
   ButtonCloseModal,
@@ -15,21 +16,8 @@ import {
 const ModalMap = ({ infos, closeModal }) => {
   const { data } = Fetcher(`/institutions/${infos}`)
 
-  if(!data) return (
-    <View 
-      style={{ 
-        flex: 1, 
-        justifyContent: "center", 
-        alignItems: "center" 
-      }}>
-      <Text 
-        style={{ 
-          fontFamily: "Alata", 
-          fontSize: 30, 
-          color: "#444" 
-      }}>Carregando...</Text>
-    </View>
-  )
+  if(!data) return null
+  
   return (
     <Container>
       <ButtonCloseModal onPress={closeModal}>

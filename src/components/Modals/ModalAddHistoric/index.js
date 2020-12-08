@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text } from 'react-native'
 import Icon2 from "react-native-vector-icons/AntDesign";
-import { CheckBox, Picker, Icon } from "native-base";
+import { CheckBox, Picker, Icon, View } from "native-base";
 import DatePicker from "react-native-datepicker";
 
 import Fetcher from "../../../hooks/Fetcher";
@@ -24,7 +24,7 @@ import {
 } from "./styles";
 
 const ModalAddHistoric = ({ buttonCloseModal, id }) => {
-  const [local, setLocal] = useState("");
+  const [local, setLocal] = useState("Selecione um local");
   const [typeDonation, setTypeDonation] = useState("");
   const [sangue, setSangue] = useState(false);
   const [plaqueta, setPlaqueta] = useState(false);
@@ -60,7 +60,7 @@ const ModalAddHistoric = ({ buttonCloseModal, id }) => {
     }
   }
 
-  if (!data) return <Text>Carregando...</Text>;
+  if (!data) return null;
 
   return (
     <Container>

@@ -23,13 +23,13 @@ export const TitleModalCad = styled.Text`
     font-size: 35px;
     font-family: Alata;
     font-weight: bold;
-    margin: 5px 0;
+    margin: 0;
 `;
 
 export const DescModalCad = styled.Text`
     font-size: 16px;
     font-family: Alata;
-    margin: 10px 0;
+    margin-bottom: 5px;
 `;
 
 export const InputModalCad = styled.TextInput`
@@ -68,7 +68,7 @@ export const InputsPassword = styled.View`
 `
 
 export const ButtonNav = styled.TouchableOpacity`
-    top: 8%;
+    top: 5%;
     left: 5%;
     padding: 10px;
     position: absolute;
